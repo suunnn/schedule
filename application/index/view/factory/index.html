@@ -1,0 +1,76 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>厂商列表</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <!-- 用户控件（操作） -->
+                    <div id="toolbar" class="toolbar" data-module="/index/factory">
+                        <div class="btn-group">
+                            <button type="button" data-name="add" class="btn btn-primary" data-event-type="view" data-event-value="" onclick="location.href = '{:url('index/factory/edit')}'"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 2px"> </i>添加</button>
+                            <button type="button" data-name="delete" class="btn btn-default" data-event-type="default" data-event-value=""><i class="fa fa-trash" aria-hidden="true" style="margin-right: 2px"> </i>删除</button>
+                        </div>
+
+                    </div>
+                    <!-- 表格数据 -->
+                    <table id="table" data-toggle="gridview" class="table" data-url="{:url('index/factory/getList')}" data-toolbar="#toolbar" data-show-columns="true" data-page-size="10" data-page-list="[10, 25, 50, All]" data-unique-id="id" data-pagination="true" data-side-pagination="client" data-search="true" data-click-to-select="false">
+                        <thead>
+                        <tr>
+                            <th data-width="10" data-align="center" data-checkbox="true"></th>
+                            <th data-width="40" data-field="code">厂商代码</th>
+                            <th data-width="80" data-field="full_name">全称</th>
+                            <th data-width="40" data-field="director">负责人</th>
+                            <th data-width="40" data-field="linkman">联系人</th>
+                            <th data-width="40" data-field="number">统一编号</th>
+                            <th data-width="40" data-field="address">地址</th>
+                            <th data-width="40" data-field="phone_1">电话</th>
+                            <th data-width="40" data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="btn btn-xs edit" href="javascript:void(0)" title="编辑">',
+            '<i class="fa fa-edit"></i>',
+            '</a>  ',
+            '<a class="btn btn-xs delete" href="javascript:void(0)" title="删除">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    var operateEvents = {
+        'click .edit': function (e, value, row, index) {
+            var param = {
+                url: '{:url("index/factory/edit");}',
+                data: {id: row.id}
+            };
+            window.location.href = param.url + '?id=' + param.data.id;
+        },
+        'click .delete': function (e, value, row, index) {
+            $("#table").gridView('deleteModal', 'delete', row)
+
+        }
+    };
+
+</script>

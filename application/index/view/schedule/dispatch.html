@@ -1,0 +1,121 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>排班系统</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+
+                    <!--用户控件（操作）-->
+                    <!--<div id="toolbar" class="toolbar" data-module="/index/schedule">-->
+                        <!--<div class="btn-group">-->
+                            <!--<button type="button" data-name="add" class="btn btn-primary" data-event-type="view" data-event-value="" onclick="location.href = '{:url('index/schedule/edit')}'"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 2px"> </i>添加</button>-->
+                            <!--<button type="button" data-name="delete" class="btn btn-default" data-event-type="default" data-event-value=""><i class="fa fa-trash" aria-hidden="true" style="margin-right: 2px"> </i>删除</button>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+
+
+                    <!-- 表格数据 -->
+                    <table id="table" class="table">
+                        <thead>
+                        <tr>
+                            <th data-width="40" data-align="center">区域码</th>
+                            <th data-width="80" >配送點名称</th>
+                            <th data-width="40" >厂商</th>
+                            <th data-width="40" >件数</th>
+                            <th data-width="40" >配送点地址</th>
+                            <th data-width="40" >配送点备注</th>
+                            <th data-width="40" >配送日期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="data" id="vo"}
+                                <tr>
+                                    <td><span data-id="{$vo.id}" onclick="setInput(this)">{$vo.zipcode_area}</span></td>
+                                    <td>{$vo.site_name}</td>
+                                    <td>{$vo.factory_name}</td>
+                                    <td>{$vo.number}</td>
+                                    <td>{$vo.address}</td>
+                                    <td>{$vo.remarks}</td>
+                                    <td>{$vo.distribution_date | date='Y-m-d', ###}</td>
+                                </tr>
+                            {/volist}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // function operateFormatter(value, row, index) {
+    //     return [
+    //         '<a class="btn btn-xs edit" href="javascript:void(0)" title="编辑">',
+    //         '<i class="fa fa-edit"></i>',
+    //         '</a>  ',
+    //         '<a class="btn btn-xs delete" href="javascript:void(0)" title="删除">',
+    //         '<i class="fa fa-trash"></i>',
+    //         '</a>'
+    //     ].join('');
+    // }
+
+    // var operateEvents = {
+    //     'click .edit': function (e, value, row, index) {
+    //         var param = {
+    //             url: '{:url("index/schedule/edit");}',
+    //             data: {id: row.id}
+    //         };
+    //         window.location.href = param.url + '?id=' + param.data.id;
+    //     },
+    //     'click .delete': function (e, value, row, index) {
+    //         $("#table").gridView('deleteModal', 'delete', row)
+    //
+    //     }
+    // };
+    function setInput(el) {
+        var zipcode = $(el).text();
+        $(el).hide();
+        var text = "<div class=\"form-group\" >" +
+            "<div class=\"col-sm-2\">" +
+            "<input data-id=\"" + $(el).attr('data-id') + "\" type=\"text\" name=\"shipment_code\" class=\"form-control\" value=\"" + zipcode + "\" onblur=\"setZipcode(this)\">" +
+            "</div>" +
+            "</div>";
+        $(el).parent().html(text);
+    }
+
+    function setZipcode(el) {
+        var zipcode = $(el).val();
+        var id = $(el).attr('data-id');
+        $.ajax({
+            method: 'post',
+            url: "{:url('index/schedule/edit')}",
+            data: {id: id, zipcode_area: zipcode},
+            dataType: 'json',
+            success: function (res) {
+                if (res.status == 0) {
+                    var html = "<span data-id=\"" + id + "\" onclick=\"setInput(this)\">" + zipcode + "</span>";
+                    $(el).parent().parent().parent().html(html);
+                } else {
+                    alert(res.error);
+                }
+            }
+        })
+    }
+
+
+</script>

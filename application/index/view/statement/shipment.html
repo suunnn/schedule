@@ -1,0 +1,96 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>揀貨報表</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <form method="post" action="{:url('index/statement/import')}" enctype="multipart/form-data" class="form-horizontal import">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">導入数据</label>
+                            <div class="col-sm-4">
+                                <input type="file" name="file">
+                            </div>
+                        </div>
+                    </form>
+
+                    <form method="post" action="{:url('index/statement/picking')}" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*廠商代碼</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="factory_code" class="form-control" value="" onblur="getFactoryFullName(this)" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*廠商全稱</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="factory_fullname" class="form-control" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">配送日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="" class="form-control" value="{$date}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">{$Think.lang.EXPORT}</button>
+                                <button type="button" class="btn btn-danger" onclick="window.history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("input[name='file']").on('change', function () {
+            $(".import").submit();
+        })
+    });
+
+    var FACTORY_CODE = '';
+    function getFactoryFullName(el) {
+        var code = $(el).val();
+        if (FACTORY_CODE != code) {
+            $.ajax({
+                url: "{:url('index/factory/getFactory')}",
+                method: 'get',
+                data: {code: code},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.status == 0) {
+                        $("input[name='factory_fullname']").val(res.data.full_name);
+                    } else {
+                        alert(res.error);
+                    }
+                }
+            });
+        }
+        FACTORY_CODE = code;
+
+    }
+</script>

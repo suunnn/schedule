@@ -1,0 +1,42 @@
+{__NOLAYOUT__}
+<form data-method="post" data-action="{:url('address/edit');}" data-submit="ajax" data-validate="true" class="form-horizontal" id="editForm">
+    <input type="hidden" value="{$data['id']}" name="id">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">編輯</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <div class="form-group must">
+                            <label class="col-sm-3 control-label">地址編號</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="number" value="{$data.number}" placeholder="" autocomplete="off" required >
+                            </div>
+                        </div>
+
+                        <div class="form-group must">
+                            <label class="col-sm-3 control-label">地址</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="address" value="{$data.address}" placeholder="" autocomplete="off" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group must">
+                            <label class="col-sm-3 control-label">郵遞區號</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="zipcode" value="{$data.zipcode}" placeholder="" autocomplete="off" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

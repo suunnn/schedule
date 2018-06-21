@@ -1,0 +1,59 @@
+<div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+        <!-- 个人信息 -->
+        <li class="nav-header">
+                <div class="dropdown profile-element">
+            <a href="{:url('admin/index/index')}">
+                    <span><img alt="image" width="64" height="64" class="img-circle" src="__IMG__/logo.jpg" /></span>
+            </a>
+                </div>
+            <div class="logo-element">
+                Manage
+            </div>
+        </li>
+        <!-- 菜单列表 -->
+        <li>
+            <a href="{:url('factory/index')}" data-model="index-factory"><i class="fa fa-home"></i> <span class="nav-label">廠商管理</span></a>
+        </li>
+        <li>
+            <a href="{:url('goods/index')}" data-model="index-goods"><i class="fa fa-shopping-cart"></i> <span class="nav-label">產品管理</span></a>
+        </li>
+        <li>
+            <a href="{:url('deliveryman/index')}" data-model="index-deliveryman"><i class="fa fa-group"></i> <span class="nav-label">{$Think.lang.DELIVERYMAN}{$Think.lang.MANAGE}</span></a>
+        </li>
+        <li>
+            <a href="{:url('car/index')}" data-model="index-car"><i class="fa fa-car"></i> <span class="nav-label">車輛{$Think.lang.MANAGE}</span></a>
+        </li>
+        <li>
+            <a href="{:url('address/index')}" data-model="index-address"><i class="fa fa-globe"></i> <span class="nav-label">地址管理</span></a>
+        </li>
+        <li>
+            <a href="{:url('site/index')}" data-model="index-site"><i class="fa fa-globe"></i> <span class="nav-label">配送點{$Think.lang.MANAGE}</span></a>
+        </li>
+        <li>
+            <a href="{:url('statement/shipment')}" data-model="index-statement"><i class="fa fa-table"></i> <span class="nav-label">揀貨報表</span></a>
+        </li>
+        <!--<li>-->
+            <!--<a href="{:url('index/schedule/index')}" data-model="index-schedule"><i class="fa fa-table"></i> <span class="nav-label">排班系统</span></a>-->
+        <!--</li>-->
+        <li>
+            <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">排班系统</span><span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+                <li><a href="{:url('schedule/index')}" data-model="index-schedule">排班</a></li>
+                <li><a href="{:url('schedule/dispatch')}" data-model="index-schedule">调度</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="{:url('exceptions/index')}" data-model="index-exceptions"><i class="fa fa-close"></i> <span class="nav-label">異常管理</span></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">系統管理</span><span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level collapse">
+                <!--<li><a href="#" data-model="user-password">权限管理</a></li>-->
+                <!--<li><a href="#" data-model="user-password">角色管理</a></li>-->
+                <li><a href="{:url('admin/index')}" data-model="index-admin">管理員管理</a></li>
+                <li><a href="{:url('admin/password')}" data-model="index-admin">修改密碼</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

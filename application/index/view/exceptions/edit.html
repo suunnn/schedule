@@ -1,0 +1,201 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>配送點{$Think.lang.EDIT}</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <form method="post" action="{:url('exceptions/edit')}" class="form-horizontal">
+                        <input type="hidden" name="id" value="{$data.id | default = ''}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送點代碼</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="site_code" class="form-control" onblur="getSite(this)" value="{$data.site_code | default = ''}" required >
+                                <input type="hidden" name="site_id" class="form-control" value="{$data.site_id | default = ''}" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">配送点名稱</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="site_name" class="form-control" value="{$data.site_name | default = ''}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*廠商代碼</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="factory_code" class="form-control" onblur="getFactory(this)" value="{$data.factory_code | default = ''}" required>
+                                <input type="hidden" name="factory_id" class="form-control" value="{$data.factory_id | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">廠商簡稱</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="factory_name" class="form-control" value="{$data.factory_name | default = ''}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*出貨單編號</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="shipment_number" class="form-control" value="{$data.shipment_number | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*出貨單日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="shipment_date" class="form-control" value="{$data.shipment_date | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送人員</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="deliveryman" class="form-control" value="{$data.deliveryman | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="delivery_date" class="form-control" value="{$data.delivery_date | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*異常原因</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="exception_type">
+                                    <option value="0">--請選擇--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">異常原因描述</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="desc" class="form-control" value="{$data.desc | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">拒收件數</label>
+                            <div class="col-sm-4">
+                                <input type="number" name="rejection_number" class="form-control" value="{$data.rejection_number | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">備註</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="remark" class="form-control" value="{$data.remark | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">處理狀況</label>
+                            <div class="col-sm-4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="status" id="inlineCheckbox1" value="1"> 是,已經處理完畢!
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">解決方式</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="solution" class="form-control" value="{$data.solution | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="window.history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var status = {$data['status'] | default = "0"};
+        if (status == 1) {
+            $("input[name='status']").prop("checked", "checked");
+        }
+
+
+        $.ajax({
+            url: "{:url('exceptions/getExceptionType')}",
+            method: 'get',
+            dataType: 'json',
+            success: function(res) {
+                if (res.status == 0) {
+                    var html = '<option value="0">--請選擇--</option>';
+                    $(res.data).each(function (index, el) {
+                        var exception_type = {$data['exception_type'] | default = "0"};
+                        if (exception_type == el.id) {
+                            html += '<option value="' + el.id + '" selected="selected">' + el.name + '</option>';
+                        } else {
+                            html += '<option value="' + el.id + '">' + el.name + '</option>';
+                        }
+
+                    })
+                    $("select[name='exception_type']").html(html);
+                } else {
+                    alertMsg(res.error, 'danger');
+                }
+            }
+        })
+    });
+    function getSite(el) {
+        var site_code = $(el).val();
+        if (!site_code) {
+            return false;
+        }
+        $.ajax({
+            url: "{:url('site/getSite')}",
+            method: 'get',
+            data: {site_code: site_code},
+            dataType: 'json',
+            success: function(res) {
+                if (res.status == 0) {
+                    $("input[name='site_id']").val(res.data.id);
+                    $("input[name='site_name']").val(res.data.site_fullname);
+                } else {
+                    alertMsg(res.error, 'danger');
+                }
+            }
+        })
+    }
+
+    function getFactory(el) {
+        var factory_code = $(el).val();
+        if (!factory_code) {
+            return false;
+        }
+        $.ajax({
+            url: "{:url('factory/getFactory')}",
+            method: 'get',
+            data: {code: factory_code},
+            dataType: 'json',
+            success: function(res) {
+                if (res.status == 0) {
+                    $("input[name='factory_id']").val(res.data.id);
+                    $("input[name='factory_name']").val(res.data.short_name);
+                } else {
+                    alertMsg(res.error, 'danger');
+                }
+            }
+        })
+    }
+
+</script>

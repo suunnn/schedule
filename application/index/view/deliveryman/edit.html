@@ -1,0 +1,213 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>{$Think.lang.USER}{$Think.lang.EDIT}</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <form method="post" action="{:url('index/deliveryman/edit')}" class="form-horizontal">
+                        <input type="hidden" name="id" value="{$data.id | default = ''}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*{$Think.lang.USER_NUMBER}</label>
+                            <div class="col-sm-4">
+                                <input type="number" name="number" class="form-control" value="{$data.number | default = ''}" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*{$Think.lang.USER_NAME}</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="username" class="form-control" value="{$data.username | default = ''}" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{$Think.lang.SEX}</label>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" id="inlineRadio1" <?php if(isset($data['sex']) && $data['sex'] == '1'): ?>checked<?php endif; ?> value="1"> {$Think.lang.MALE}
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" id="inlineRadio2" <?php if(isset($data['sex']) && $data['sex'] == '2'): ?>checked<?php endif; ?> value="2"> {$Think.lang.FEMALE}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{$Think.lang.BIRTHDAY}</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="birthday" class="form-control" value="{$data.birthday | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">籍貫</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="native_place" class="form-control" value="{$data.native_place | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">區域</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="area" class="form-control" value="{$data.area | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">身份證號</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="id_card" class="form-control" value="{$data.id_card | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">試用期長</label>
+                            <div class="col-sm-4">
+                                <input type="number" name="probation" class="form-control" value="{$data.probation | default = ''}" placeholder="個月">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">到職日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="take_office" class="form-control" value="{$data.take_office | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">轉正日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="become_regular" class="form-control" value="{$data.become_regular | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">離職日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="dimission" class="form-control" value="{$data.dimission | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-4">
+                                <input type="email" name="email" class="form-control" value="{$data.email | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">地址</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="address" class="form-control" value="{$data.address | default = ''}">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" name="zipcode" class="form-control" value="{$data.zipcode | default = ''}" placeholder="郵遞區號">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">電話</label>
+                            <div class="col-sm-4">
+                                <input type="tel" name="telephone" class="form-control" value="{$data.telephone | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手機</label>
+                            <div class="col-sm-4">
+                                <input type="tel" name="mobilephone" class="form-control" value="{$data.mobilephone | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手機1</label>
+                            <div class="col-sm-4">
+                                <input type="tel" name="mobilephone1" class="form-control" value="{$data.mobilephone1 | default = ''}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="window.history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var id = {$data['id'] | default = "''"};
+        if (!id) {
+            $.ajax({
+                url: "{:url('index/deliveryman/generateNumber')}",
+                method: 'get',
+                dataType: 'json',
+                success: function(res) {
+                    if (res.status == 0) {
+                        $("input[name='number']").val(res.data);
+                    } else {
+                        alertMsg(res.error, 'danger');
+                    }
+                }
+            })
+        }
+
+        $("input[name='become_regular']").on('change', function () {
+            var take_office = DateToUnix($("input[name='take_office']").val());
+            var become_regular = DateToUnix($(this).val());
+            if (take_office > become_regular) {
+                alertMsg("轉正日期不能小于到職日期", 'danger');
+                return false;
+            }
+        });
+
+        $("input[name='dimission']").on('change', function () {
+            var take_office = DateToUnix($("input[name='take_office']").val());
+            var dimission = DateToUnix($(this).val());
+            if (take_office > dimission) {
+                alertMsg("轉正日期不能小于離職日期", 'danger');
+                return false;
+            }
+        });
+
+        $("form").submit(function () {
+            var take_office = DateToUnix($("input[name='take_office']").val());
+            var become_regular = DateToUnix($("input[name='become_regular']").val());
+            var dimission = DateToUnix($("input[name='dimission']").val());
+            if (take_office > become_regular) {
+                alertMsg("轉正日期不能小于到職日期", 'danger');
+                return false;
+            }
+            if (take_office > dimission) {
+                alertMsg("轉正日期不能小于離職日期", 'danger');
+                return false;
+            }
+            if (become_regular > dimission) {
+                alertMsg("離職日期不能小于轉正日期", 'danger');
+                return false;
+            }
+            return true;
+
+        });
+    });
+
+    // function DateToUnix(string) {
+    //     var f = string.split(' ', 2);
+    //     var d = (f[0] ? f[0] : '').split('-', 3);
+    //     var t = (f[1] ? f[1] : '').split(':', 3);
+    //     return (new Date(
+    //         parseInt(d[0], 10) || null,
+    //         (parseInt(d[1], 10) || 1) - 1,
+    //         parseInt(d[2], 10) || null,
+    //         parseInt(t[0], 10) || null,
+    //         parseInt(t[1], 10) || null,
+    //         parseInt(t[2], 10) || null
+    //     )).getTime() / 1000;
+    // };
+
+</script>

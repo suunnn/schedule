@@ -1,0 +1,163 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>产品编辑</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <form method="post" action="{:url('index/goods/edit')}" class="form-horizontal">
+                        <input type="hidden" name="id" value="{$data.id | default = ''}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">厂商代码</label>
+                            <div class="col-sm-4">
+                                <!--<input type="text" name="code" class="form-control" value="{$data.code | default = ''}" required >-->
+                                <select class="form-control" name="factory_id" data-factory="{$data.factory_id | default = 0}">
+                                    <option value="0">请选择</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">全称</label>-->
+                            <!--<div class="col-sm-4">-->
+                                <!--<input type="text" class="form-control" value="{$data.full_name | default = ''}" readonly>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*产品代码</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="goods_code" class="form-control" value="{$data.goods_code | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*产品条码</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="barcode" class="form-control" value="{$data.barcode | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*安全存量</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="safe_num" class="form-control" value="{$data.safe_num | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*产品名称</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="goods_name" class="form-control" value="{$data.goods_name | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">产品规格</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="specification" class="form-control" value="{$data.specification | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*产品才积</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" name="volume" class="form-control" value="{$data.volume | default = ''}" required>
+                                    <div class="input-group-addon">才</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*产品重量</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" name="weight" class="form-control" value="{$data.weight | default = ''}" required>
+                                    <div class="input-group-addon">Kg</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*小单位</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="small_unit" class="form-control" value="{$data.small_unit | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*小->中单位转换量</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="small_unit_transition" class="form-control" value="{$data.small_unit_transition | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*中单位</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="medium_unit" class="form-control" value="{$data.medium_unit | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*中->大单位转换量</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="medium_unit_transition" class="form-control" value="{$data.medium_unit_transition | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*大单位</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="big_unit" class="form-control" value="{$data.big_unit | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="remarks" class="form-control" value="{$data.remarks | default = ''}">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="window.history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var factory_id = $("select[name='factory_id']").attr("data-factory");
+        $.ajax({
+            url: "{:url('index/factory/getList')}",
+            method: 'get',
+            dataType: 'json',
+            success: function (res) {
+                var html = "<option value='0'>请选择</option>";
+                res.forEach(function (value) {
+                    if (factory_id == value['id']) {
+                        html += "<option selected='selected' value='" + value['id'] + "'>" + value['code'] + '/' + value['full_name'] + "</option>"
+                    } else {
+                        html += "<option value='" + value['id'] + "'>" + value['code'] + '/' + value['full_name'] + "</option>"
+                    }
+                });
+                $("select[name='factory_id']").html(html);
+
+
+            }
+        })
+    })
+</script>

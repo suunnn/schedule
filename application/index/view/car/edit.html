@@ -1,0 +1,167 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>車輛{$Think.lang.EDIT}</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <form method="post" action="{:url('index/car/edit')}" class="form-horizontal">
+                        <input type="hidden" name="id" value="{$data.id | default = ''}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*車牌號碼</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="number" class="form-control" value="{$data.number | default = ''}" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*廠牌</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="brand" class="form-control" value="{$data.brand | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">購買日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="buy_date" class="form-control" value="{$data.buy_date | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*驗車日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="check_date" class="form-control" value="{$data.check_date | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">車況</label>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="inlineRadio1" <?php if(isset($data['status']) && $data['status'] == '1'): ?>checked<?php endif; ?> value="1"> 正常
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="inlineRadio2" <?php if(isset($data['status']) && $data['status'] == '2'): ?>checked<?php endif; ?> value="2"> 維修
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">維修完成日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="repair_date" class="form-control" value="{$data.repair_date | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">保險公司</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="insurance_co" class="form-control" value="{$data.insurance_co | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">保險種類</label>
+                            <div class="col-sm-6">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="insurance_type" name="insurance_type[]" id="inlineCheckbox1" value="1"> 甲式
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="insurance_type" name="insurance_type[]" id="inlineCheckbox2" value="2"> 乙式
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="insurance_type" name="insurance_type[]" id="inlineCheckbox3" value="3"> 丙式
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="insurance_type" name="insurance_type[]" id="inlineCheckbox4" value="4"> 意外險
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="insurance_type" name="insurance_type[]" id="inlineCheckbox5" value="5"> 強制險
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*保險到期日</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="insurance_expire" class="form-control" value="{$data.insurance_expire | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">排氣量</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="displacement" class="form-control" value="{$data.displacement | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">載重量</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="load_capacity" class="form-control" value="{$data.load_capacity | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">總重量</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="total_weight" class="form-control" value="{$data.total_weight | default = ''}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="window.history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".insurance_type").each(function (index, element) {
+            var type = {$data['insurance_type'] | default = "''"};
+            if (type != '') {
+                type.forEach(function (value) {
+                    if ($(element).val() == value) {
+                        $(element).prop('checked', 'checked');
+                    }
+                })
+            }
+        })
+
+
+        var curTime = CurTime();
+
+        $("form").submit(function () {
+            var check_date = DateToUnix($("input[name='check_date']").val());
+            var insurance_expire = DateToUnix($("input[name='insurance_expire']").val());
+
+            if (curTime >= check_date) {
+                alertMsg('驗車日期不可小于当前日期', 'danger');
+                return false;
+            }
+
+            if (curTime >= insurance_expire) {
+                alertMsg('保險到期日不可小于当前日期', 'danger');
+                return false;
+            }
+
+            // var status = $("input[name='status']").val();
+            // console.log(status);
+
+            return true;
+        });
+    })
+
+</script>

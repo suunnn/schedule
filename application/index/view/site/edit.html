@@ -1,0 +1,182 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>配送點{$Think.lang.EDIT}</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <form method="post" action="{:url('index/site/edit')}" class="form-horizontal">
+                        <input type="hidden" name="id" value="{$data.id | default = ''}">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送站点代码</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="site_code" class="form-control" value="{$data.site_code | default = ''}" required >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送点全称</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="site_fullname" class="form-control" value="{$data.site_fullname | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送点简称</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="site_shortname" class="form-control" value="{$data.site_shortname | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">联络人</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="linkman" class="form-control" value="{$data.linkman | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*邮递区号</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="zipcode" class="form-control" value="{$data.zipcode | default = ''}" onblur="getZipcode(this)" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送住址</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="address_number" onclick="getAddress(this)" class="form-control" value="{$data.address_number | default = ''}" placeholder="地址編號" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" name="address_zipcode" class="form-control" value="{$data.address_zipcode | default = ''}" placeholder="郵遞區號" required>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" name="address" class="form-control" value="{$data.address | default = ''}" placeholder="地址" required>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">住址1</label>-->
+                            <!--<div class="col-sm-4">-->
+                                <!--<input type="text" name="address1" class="form-control" value="{$data.address1 | default = ''}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-2 control-label">住址2</label>-->
+                            <!--<div class="col-sm-4">-->
+                                <!--<input type="text" name="address2" class="form-control" value="{$data.address2 | default = ''}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">电话</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="telephone" class="form-control" value="{$data.telephone | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">传真号码</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="fax" class="form-control" value="{$data.fax | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*配送区域</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="area" class="form-control" value="{$data.area | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">*物流中心</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="center" class="form-control" value="{$data.center | default = ''}" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="remark" class="form-control" value="{$data.remark | default = ''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="window.history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var id = {$data['id'] | default = "''"};
+        if (!id) {
+            $.ajax({
+                url: "{:url('index/site/generateCode')}",
+                method: 'get',
+                dataType: 'json',
+                success: function(res) {
+                    if (res.status == 0) {
+                        $("input[name='site_code']").val(res.data);
+                    } else {
+                        alertMsg(res.error, 'danger');
+                    }
+                }
+            })
+        }
+    });
+    function getZipcode(el) {
+        var zipcode = $(el).val();
+        if (!zipcode) {
+            return false;
+        }
+        $.ajax({
+            url: "{:url('site/zipcode')}",
+            method: 'get',
+            data: {zipcode: zipcode},
+            dataType: 'json',
+            success: function(res) {
+                if (res.status == 0) {
+                    $("input[name='area']").val(res.data.area);
+                    $("input[name='center']").val(res.data.dc);
+                } else {
+                    alertMsg(res.error, 'danger');
+                }
+            }
+        })
+    }
+
+    function getAddress(el) {
+        var number = $(el).val();
+        if (!number) {
+            return false;
+        }
+        $.ajax({
+            url: "{:url('address/getAddress')}",
+            method: 'get',
+            data: {number: number},
+            dataType: 'json',
+            success: function(res) {
+                if (res.status == 0) {
+                    $("input[name='address']").val(res.data.address);
+                    $("input[name='address_zipcode']").val(res.data.zipcode);
+                } else {
+                    alertMsg(res.error, 'danger');
+                }
+            }
+        })
+    }
+
+</script>

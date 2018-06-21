@@ -1,0 +1,79 @@
+<!-- Data Tables -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" style="background: white;padding: 10px">
+                <!-- 表单标题概要 -->
+                <div class="ibox-title">
+                    <h5>{$Think.lang.USER}{$Think.lang.LIST}</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 表单内容 -->
+                <div class="ibox-content">
+                    <!-- 用户控件（操作） -->
+                    <div id="toolbar" class="toolbar" data-module="/index/deliveryman">
+                        <div class="btn-group">
+                            <button type="button" data-name="add" class="btn btn-primary" data-event-type="view" data-event-value="" onclick="location.href = '{:url('index/deliveryman/edit')}'"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 2px"> </i>添加</button>
+                            <button type="button" data-name="delete" class="btn btn-default" data-event-type="default" data-event-value=""><i class="fa fa-trash" aria-hidden="true" style="margin-right: 2px"> </i>删除</button>
+                        </div>
+
+                    </div>
+                    <!-- 表格数据 -->
+                    <table id="table" data-toggle="gridview" class="table" data-url="{:url('index/deliveryman/getList')}" data-toolbar="#toolbar" data-show-columns="true" data-page-size="10" data-page-list="[10, 25, 50, All]" data-unique-id="id" data-pagination="true" data-side-pagination="client" data-search="true" data-click-to-select="false">
+                        <thead>
+                        <tr>
+                            <th data-width="10" data-align="center" data-checkbox="true"></th>
+                            <th data-width="40" data-field="number">{$Think.lang.USER_NUMBER}</th>
+                            <th data-width="40" data-field="username">{$Think.lang.USER_NAME}</th>
+                            <th data-width="40" data-field="sex">{$Think.lang.SEX}</th>
+                            <th data-width="40" data-field="birthday">{$Think.lang.BIRTHDAY}</th>
+                            <th data-width="40" data-field="id_card">身份證號</th>
+                            <th data-width="40" data-field="native_place">籍貫</th>
+                            <th data-width="40" data-field="area">區域</th>
+                            <th data-width="40" data-field="address">地址</th>
+                            <th data-width="40" data-field="zipcode">郵遞區號</th>
+                            <th data-width="40" data-field="telephone">電話</th>
+                            <th data-width="40" data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function operateFormatter(value, row, index) {
+        return [
+            '<a class="btn btn-xs edit" href="javascript:void(0)" title="编辑">',
+            '<i class="fa fa-edit"></i>',
+            '</a>  ',
+            '<a class="btn btn-xs delete" href="javascript:void(0)" title="删除">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    var operateEvents = {
+        'click .edit': function (e, value, row, index) {
+            var param = {
+                url: '{:url("index/deliveryman/edit");}',
+                data: {id: row.id}
+            };
+            window.location.href = param.url + '?id=' + param.data.id;
+        },
+        'click .delete': function (e, value, row, index) {
+            $("#table").gridView('deleteModal', 'delete', row)
+
+        }
+    };
+
+</script>
